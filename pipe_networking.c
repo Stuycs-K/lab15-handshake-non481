@@ -11,11 +11,17 @@
   =========================*/
 int server_setup() {
   int from_client = 0;
+  if (mkfifo("non") == -1) {
+    perror("Could not open");
+  }
+  mkfifo(get_pid());
+
+
   return from_client;
 }
 
 /*=========================
-  server_handshake 
+  server_handshake
   args: int * to_client
 
   Performs the server side pipe 3 way handshake.
@@ -56,5 +62,3 @@ int server_connect(int from_client) {
   int to_client  = 0;
   return to_client;
 }
-
-
